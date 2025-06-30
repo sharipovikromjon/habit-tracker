@@ -10,6 +10,26 @@ import {
   Menu,
   MenuItem,
 } from "@mui/material";
+import { styled } from "@mui/material/styles";
+
+const StatusIndicator = styled("div")(
+  ({ theme, status }: { status: string }) => ({
+    display: "flex",
+    alignItems: "center",
+    gap: theme.spacing(1),
+    padding: theme.spacing(0.5, 1),
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor:
+      status === "done"
+        ? "#4caf50" // Green for "Done"
+        : status === "in progress"
+        ? "#ff9800" // Orange for "In Progress"
+        : "#f44336", // Red for "Not Started"
+    color: "#fff",
+    fontSize: "0.75rem",
+    fontWeight: 500,
+  })
+);
 
 const HabitList: React.FC = () => {
   const { habits, filter, setStatus } = useHabitStore();
@@ -57,6 +77,11 @@ const HabitList: React.FC = () => {
             }
           />
           <ListItemText primary={habit.name} secondary={habit.description} />
+          <StatusIndicator status={habit.status}>
+            {habit.status === "done" && "Done"}
+            {habit.status === "in progress" && "In Progress"}
+            {habit.status === "not started" && "Not Started"}
+          </StatusIndicator>
           <IconButton onClick={(e) => handleMenuClick(e, habit.id)}>
             <MoreVertIcon />
           </IconButton>
