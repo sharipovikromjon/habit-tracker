@@ -30,7 +30,9 @@ const FilterDialog: React.FC<FilterDialogProps> = ({ open, onClose }) => {
   return (
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>Filter Habits</DialogTitle>
-      <DialogContent>
+      <DialogContent
+        sx={{ px: "150px", display: "flex", justifyContent: "left" }}
+      >
         <FormControl>
           <FormLabel>Status</FormLabel>
           <RadioGroup

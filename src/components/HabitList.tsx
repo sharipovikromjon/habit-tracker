@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHabitStore } from "../store/habitStore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { styled } from "@mui/material/styles";
 import {
   Checkbox,
   IconButton,
@@ -10,10 +11,9 @@ import {
   Menu,
   MenuItem,
 } from "@mui/material";
-import { styled } from "@mui/material/styles";
 
 const StatusIndicator = styled("div")(
-  ({ theme, status }: { status: string }) => ({
+  ({ theme, status }: { theme: any; status: string }) => ({
     display: "flex",
     alignItems: "center",
     gap: theme.spacing(1),
@@ -21,11 +21,11 @@ const StatusIndicator = styled("div")(
     borderRadius: theme.shape.borderRadius,
     backgroundColor:
       status === "done"
-        ? "#4caf50" // Green for "Done"
+        ? "#a5d6a7" // Light green for "Done"
         : status === "in progress"
-        ? "#ff9800" // Orange for "In Progress"
-        : "#f44336", // Red for "Not Started"
-    color: "#fff",
+        ? "#ffe0b2" // Light orange for "In Progress"
+        : "#e0e0e0", // Light gray for "Not Started"
+    color: status === "not started" ? "#616161" : "#000", // Dark gray for "Not Started," black for others
     fontSize: "0.75rem",
     fontWeight: 500,
   })
@@ -87,6 +87,7 @@ const HabitList: React.FC = () => {
           </IconButton>
         </ListItem>
       ))}
+
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
         <MenuItem onClick={() => handleStatusChange("done")}>Done</MenuItem>
         <MenuItem onClick={() => handleStatusChange("in progress")}>
