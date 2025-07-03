@@ -66,7 +66,14 @@ const HabitList: React.FC = () => {
   return (
     <List>
       {filteredHabits.map((habit) => (
-        <ListItem key={habit.id}>
+        <ListItem
+          key={habit.id}
+          sx={{
+            "&:hover": {
+              backgroundColor: "rgba(0, 0, 0, 0.08)",
+            },
+          }}
+        >
           <Checkbox
             checked={habit.status === "done"}
             onChange={() =>
@@ -87,7 +94,6 @@ const HabitList: React.FC = () => {
           </IconButton>
         </ListItem>
       ))}
-
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
         <MenuItem onClick={() => handleStatusChange("done")}>Done</MenuItem>
         <MenuItem onClick={() => handleStatusChange("in progress")}>

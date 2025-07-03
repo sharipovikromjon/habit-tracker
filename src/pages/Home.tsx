@@ -96,8 +96,8 @@ const Home = () => {
           </Grid>
           <Grid size={7}>
             {/* Habits List */}
-            <Item>
-              <Typography variant="h4" gutterBottom>
+            <Item sx={{ height: "480px", overflowY: "scroll" }}>
+              <Typography variant="h5" gutterBottom>
                 Habit Tracker List
               </Typography>
 
